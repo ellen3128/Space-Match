@@ -47,39 +47,21 @@ const levelEl = document.querySelector('.level');
          2) if clicked, flip card to faceUp 
          3) check match */
 
-// cardEls.forEach((cardEl, index) => {
-//     cardEl.addEventListener('click', function() {
-//         const card = cardOptions[index];
-//         if (card.faceUp === false) {
-//             card.faceUp = true;
-//             // console.log("1. rendered: ", cardOptions[index].faceUp);
-//         } else {
-//             card.faceUp = false;
-//             // console.log("2. rendered: ", cardOptions[index].faceUp);
-//         }
-//         render();
-//     });
-// });
-
 
 cardEls.forEach((cardEl, index) => {
     cardEl.addEventListener('click', function() {
-        if (choice1 !== null && choice2 !== null) {
-            // Ignore clicks when two cards are already chosen
-            return;
-        }
         const card = cardOptions[index];
+        // Flip the card face-up
         if (card.faceUp === false) {
             card.faceUp = true;
-        } else {
-            card.faceUp = false;
         }
+        // Set the first or second card choice
         if (choice1 === null) {
             choice1 = card; // First card choice
         } else {
             choice2 = card; // Second card choice
-                checkMatch();
-            }
+            checkMatch(); // Check if the two choices match
+        }
         render();
     });
 });
@@ -112,7 +94,7 @@ function shuffle() {
         if (card.faceUp === true) {
             cardEl.classList.add('flipped');
             cardEl.querySelector('img').src = cardOptions[index].image;
-            // console.log(index+1, 'flipped-first', cardEl.classList);
+            console.log(index+1, 'flipped-first', cardEl.classList);
             // console.log(cardOptions[index]);
         } else {
             cardEl.classList.remove('flipped');
@@ -124,8 +106,31 @@ function shuffle() {
 }
 
 function checkMatch() {
-// alert win or gameover
+    // Check if both choices have been made
+    if (choice1 && choice2) {
+        // Check if the two choices match
+        if (choice1.value === choice2.value) {
+            // Match found
+            matchedCards.push(choice1);
+            matchedCards.push(choice2);
+        } else {
+            // No match
+            // Store the choices before resetting to null
+            const prevChoice1 = choice1;
+            const prevChoice2 = choice2;
+            // Reset choices after checking match
+            choice1 = null;
+            choice2 = null;
+            // Flip the cards back to faceDown state after a short delay
+            setTimeout(() => {
+                prevChoice1.faceUp = false;
+                prevChoice2.faceUp = false;
+                render();
+            }, 1000); // Adjust the time (in milliseconds) to your preference for the delay before flipping back
+        }
+    }
 }
+
 
 
 init();
