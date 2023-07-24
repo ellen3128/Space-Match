@@ -23,16 +23,15 @@ const cardOptions = [
 
 // state variables -----------------------------------------------------------
 
-let choice1; 
-let choice2; 
-let matchedCards; 
-let wrongGuesses;
+let choice1 = null; // currently holds no value
+let choice2 = null; // currently holds no value
+let matchedCards = []; 
+let wrongGuesses = 0;
 let level;
 
 // cached element references -----------------------------------------------------------
 
 const cardEls = document.querySelectorAll('.card');
-const firstGuess = null;
 const wrongGuessesEl = document.querySelector('.wrongGuesses');
 const levelEl = document.querySelector('.level');
 
@@ -44,16 +43,43 @@ const levelEl = document.querySelector('.level');
 // 3) alert msg when turns === max. number of turns (TBD maybe 10?)
 // 3) card shuffle when user clicks 'next level' button
 
+/* TODO: 1) ignore clicks when two cards are clicked (choice1 && choice2 !== null)
+         2) if clicked, flip card to faceUp 
+         3) check match */
+
+// cardEls.forEach((cardEl, index) => {
+//     cardEl.addEventListener('click', function() {
+//         const card = cardOptions[index];
+//         if (card.faceUp === false) {
+//             card.faceUp = true;
+//             // console.log("1. rendered: ", cardOptions[index].faceUp);
+//         } else {
+//             card.faceUp = false;
+//             // console.log("2. rendered: ", cardOptions[index].faceUp);
+//         }
+//         render();
+//     });
+// });
+
 
 cardEls.forEach((cardEl, index) => {
     cardEl.addEventListener('click', function() {
-        if (cardOptions[index].faceUp === false) {
-            cardOptions[index].faceUp = true;
-            // console.log("1. rendered: ", cardOptions[index].faceUp);
-        } else {
-            cardOptions[index].faceUp = false;
-            // console.log("2. rendered: ", cardOptions[index].faceUp);
+        if (choice1 !== null && choice2 !== null) {
+            // Ignore clicks when two cards are already chosen
+            return;
         }
+        const card = cardOptions[index];
+        if (card.faceUp === false) {
+            card.faceUp = true;
+        } else {
+            card.faceUp = false;
+        }
+        if (choice1 === null) {
+            choice1 = card; // First card choice
+        } else {
+            choice2 = card; // Second card choice
+                checkMatch();
+            }
         render();
     });
 });
@@ -85,7 +111,7 @@ function shuffle() {
         const card = cardOptions[index];
         if (card.faceUp === true) {
             cardEl.classList.add('flipped');
-            cardEl.querySelector('img').src = card.image;
+            cardEl.querySelector('img').src = cardOptions[index].image;
             // console.log(index+1, 'flipped-first', cardEl.classList);
             // console.log(cardOptions[index]);
         } else {
