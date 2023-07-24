@@ -26,13 +26,13 @@ const cardOptions = [
 let choice1 = null; // currently holds no value
 let choice2 = null; // currently holds no value
 let matchedCards = []; 
-let wrongGuesses = 0;
+let wrongGuessesAllowed;
 let level;
 
 // cached element references -----------------------------------------------------------
 
 const cardEls = document.querySelectorAll('.card');
-const wrongGuessesEl = document.querySelector('.wrongGuesses');
+const wrongGuessesAllowedEl = document.querySelector('.wrongGuessesAllowed');
 const levelEl = document.querySelector('.level');
 
 
@@ -47,6 +47,7 @@ const levelEl = document.querySelector('.level');
          2) if clicked, flip card to faceUp 
          3) check match */
 
+let clickEnabled = true;
 
 cardEls.forEach((cardEl, index) => {
     cardEl.addEventListener('click', function() {
@@ -72,7 +73,7 @@ cardEls.forEach((cardEl, index) => {
 function init() {
     console.log('game start');
     // initialize state
-    wrongGuesses = 10;
+    wrongGuessesAllowed = 10;
     level = 1;
     matchedCards = [];
     shuffle();
@@ -89,9 +90,10 @@ function shuffle() {
 }
 
   function render() {
+    wrongGuessesAllowedEl.textContent = wrongGuessesAllowed;
     cardEls.forEach((cardEl, index) => {
         const card = cardOptions[index];
-        if (card.faceUp === true) {
+        if (card.faceUp === true || matchedCards.includes(card)) {
             cardEl.classList.add('flipped');
             cardEl.querySelector('img').src = cardOptions[index].image;
             console.log(index+1, 'flipped-first', cardEl.classList);
@@ -106,7 +108,7 @@ function shuffle() {
 }
 
 function checkMatch() {
-    // Check if both choices have been made
+    // Check if both choices have been made, meaning non-null values 
     if (choice1 && choice2) {
         // Check if the two choices match
         if (choice1.value === choice2.value) {
@@ -125,8 +127,9 @@ function checkMatch() {
             setTimeout(() => {
                 prevChoice1.faceUp = false;
                 prevChoice2.faceUp = false;
+                wrongGuessesAllowed--;
                 render();
-            }, 1000); // Adjust the time (in milliseconds) to your preference for the delay before flipping back
+            }, 500); // code will be executed after 500 milliseconds or 0.5 second 
         }
     }
 }
