@@ -5,9 +5,8 @@
 
 ## I. Wireframes
 <!-- Screenshot(s): Images of your actual game. -->
-- 
 
-![img for demo](../assets/wireframe.png)
+![Wireframe](./assets/wireframe.png)
 
 
 ## II. Technologies used 
