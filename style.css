@@ -1,0 +1,27 @@
+
+h1 {
+    text-align: center;
+    padding: 30px;
+}
+
+main { 
+    height: 100vh;
+    width: 40vw;
+    margin: 0 auto;
+}
+
+.row { 
+    grid-template-rows: 1fr 1fr 1fr;
+}
+
+.card {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 20px;
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+.flipped {
+    transform: rotateY(180deg);
+}
