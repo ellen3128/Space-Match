@@ -28,6 +28,7 @@ let choice2 = null; // currently holds no value
 let matchedCards = []; 
 let wrongGuessesAllowed;
 let level;
+let winner;
 
 // cached element references -----------------------------------------------------------
 
@@ -91,20 +92,21 @@ function shuffle() {
 
   function render() {
     wrongGuessesAllowedEl.textContent = wrongGuessesAllowed;
-    cardEls.forEach((cardEl, index) => {
+    cardEls.forEach((cardEl, index) => { 
         const card = cardOptions[index];
-        if (card.faceUp === true || matchedCards.includes(card)) {
+        if (card.faceUp === true || matchedCards.includes(card)) { // if card is face-up or within the matched cards array, render the image of the card 
             cardEl.classList.add('flipped');
             cardEl.querySelector('img').src = cardOptions[index].image;
-            console.log(index+1, 'flipped-first', cardEl.classList);
+            // console.log(index+1, 'flipped-first', cardEl.classList);
             // console.log(cardOptions[index]);
         } else {
-            cardEl.classList.remove('flipped');
+            cardEl.classList.remove('flipped'); // if not, render the back image of the card 
             cardEl.querySelector('img').src = backImage;
             // console.log(index+1, 'flipped-back', cardEl.classList);
             // console.log(cardOptions[index]);
         }
     });
+    isGameOver(); // Check if the game is over after rendering
 }
 
 function checkMatch() {
@@ -127,13 +129,41 @@ function checkMatch() {
             setTimeout(() => {
                 prevChoice1.faceUp = false;
                 prevChoice2.faceUp = false;
+                if (wrongGuessesAllowed > 0) {
                 wrongGuessesAllowed--;
+                }
                 render();
+                isGameOver();// Check if the game is over after updating the wrongGuessesAllowed count
             }, 500); // code will be executed after 500 milliseconds or 0.5 second 
         }
     }
 }
 
+function isGameOver() {
+    if (wrongGuessesAllowed === 0) {
+        // Show "Game Over" alert
+        alert('Game Over! Would you like to replay?');
+        // Reset the game
+        resetGame();
+        return true;
+    }
+    return false;
+}
 
+function resetGame() {
+    // Reset all state variables and game-related data
+    choice1 = null;
+    choice2 = null;
+    matchedCards = [];
+    wrongGuessesAllowed = 10;
+
+       // Set all cards to face down (i.e., `faceUp` to `false`)
+    cardOptions.forEach(card => {
+        card.faceUp = false;
+    });
+
+    shuffle();
+    render();
+}
 
 init();
