@@ -15,7 +15,8 @@ header {
 
 main { 
     height: 50vh;
-    width: 50vw;
+    width: 60vw;
+    max-width: 600px;
     margin: 0 0 0 400px;
 }
 
