@@ -29,17 +29,16 @@ let matchedCards = [];
 let wrongGuessesAllowed;
 let level;
 let winner;
+let countdown;
 
 // cached element references -----------------------------------------------------------
 
 const cardEls = document.querySelectorAll('.card');
 const wrongGuessesAllowedEl = document.querySelector('.wrongGuessesAllowed');
 const levelEl = document.querySelector('.level');
-
+const countdownEl = document.querySelector('.countdown');
 
 // event listeners -----------------------------------------------------------
-
-let clickEnabled = true;
 
 cardEls.forEach((cardEl, index) => {
     cardEl.addEventListener('click', function() {
@@ -51,7 +50,9 @@ cardEls.forEach((cardEl, index) => {
         // Set the first or second card choice
         if (choice1 === null) {
             choice1 = card; // First card choice
+            startCountdown(); // start the countdown
         } else {
+            clearInterval(timeOut); // stop the countdown when the second card is clicked
             choice2 = card; // Second card choice
             checkMatch(); // Check if the two choices match
         }
@@ -72,6 +73,24 @@ function init() {
     render();
 }
 
+function startCountdown() {
+    countdown = 3; // reset the countdown
+    countdownEl.textContent = countdown;
+    timeOut = setInterval(() => {
+        countdown--;
+        countdownEl.textContent = countdown;
+        if (countdown === 0) {
+            clearInterval(timeOut); // stop the countdown when it reaches 0
+            choice1.faceUp = false;
+            choice1 = null;
+            wrongGuessesAllowed--;
+            render();
+            isGameOver();
+        }
+    }, 1000); // decrement the countdown every second
+}
+
+
 // helper function -----------------------------------------------------------
 
 function shuffle() {
@@ -81,7 +100,7 @@ function shuffle() {
     }
 }
 
-  function render() {
+function render() {
     wrongGuessesAllowedEl.textContent = wrongGuessesAllowed;
     cardEls.forEach((cardEl, index) => { 
         const card = cardOptions[index];
@@ -106,15 +125,17 @@ function shuffle() {
     }, 500);
 }
 
-
 function checkMatch() {
     // Check if both choices have been made, meaning non-null values 
-    if (choice1 && choice2) {
+    if (choice1 !== null && choice2 !== null) {
         // Check if the two choices match
         if (choice1.value === choice2.value) {
             // Match found
             matchedCards.push(choice1);
             matchedCards.push(choice2);
+            // Reset choices after confirming match
+            choice1 = null;
+            choice2 = null;
         } else {
             // No match
             // Store the choices before resetting to null
@@ -128,7 +149,7 @@ function checkMatch() {
                 prevChoice1.faceUp = false;
                 prevChoice2.faceUp = false;
                 if (wrongGuessesAllowed > 0) {
-                wrongGuessesAllowed--;
+                    wrongGuessesAllowed--;
                 }
                 render();
                 isGameOver();// Check if the game is over after updating the wrongGuessesAllowed count
@@ -136,6 +157,7 @@ function checkMatch() {
         }
     }
 }
+
 
 function isGameWon() {
     if (matchedCards.length === 12) {
@@ -170,6 +192,7 @@ function resetGame() {
     cardOptions.forEach(card => {
         card.faceUp = false;
     });
+    countdownEl.textContent = '';
 
     shuffle();
     render();
