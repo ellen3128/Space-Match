@@ -22,7 +22,8 @@
 2. [W3docs](https://www.w3docs.com/snippets/javascript/how-to-randomize-shuffle-a-javascript-array.html)
 
 ## IV. Getting started
-<!-- In this section include the link to your deployed game and any instructions you deem important. -->
+
+- link to deployed game and any instructions will be updated
 
 ## V. Future features
 <!-- Planned future enhancements (icebox items) -->
