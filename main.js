@@ -27,7 +27,9 @@ let matchedCards = [];
 let wrongGuessesAllowed;
 let level;
 let winner;
-let countdown;
+let countdown = 0;
+let timeOut;
+let clickable = true;
 
 // cached element references -----------------------------------------------------------
 
@@ -40,6 +42,7 @@ const countdownEl = document.querySelector('.countdown');
 
 cardEls.forEach((cardEl, index) => {
     cardEl.addEventListener('click', function() {
+        if (!clickable) return; // Prevent function from proceeding if clickable is false
         const card = cardOptions[index];
         // Flip the card face-up
         if (card.faceUp === false) {
@@ -49,14 +52,16 @@ cardEls.forEach((cardEl, index) => {
         if (choice1 === null) {
             choice1 = card; // First card choice
             startCountdown(); // start the countdown
-        } else {
-            clearInterval(timeOut); // stop the countdown when the second card is clicked
+            render();
+        } else if (choice1 !== null && choice2 === null) {
             choice2 = card; // Second card choice
+            clickable = false; // Disable clicking after second card choice
             checkMatch(); // Check if the two choices match
+            render();
         }
-        render();
     });
 });
+
 
 
 // functions -----------------------------------------------------------
@@ -72,25 +77,27 @@ function init() {
 }
 
 function startCountdown() {
-    let countdown = 3; // reset the countdown
+    countdown = 3; // reset the countdown
     AUDIO.currentTime = 0;
     AUDIO.play();
     countdownEl.textContent = countdown;
     timeOut = setInterval(() => {
         countdown--;
         countdownEl.textContent = countdown;
-        if (countdown === 0) {
-            clearInterval(timeOut); // stop the countdown when it reaches 0
-            choice1.faceUp = false;
-            choice1 = null;
-            wrongGuessesAllowed--;
+        if (countdown <= 0 || choice2 !== null) {
+            countdown = 0; // fixes timer from going into negative values
+            clearInterval(timeOut); // stop the countdown when it reaches 0 or when the second card is clicked
+            clickable = true; // Enable clicking after countdown finishes
+            if(choice1 !== null && choice2 === null) { // if only one card has been chosen
+                choice1.faceUp = false;
+                choice1 = null;
+                wrongGuessesAllowed--;
+            }
             render();
             isGameOver();
         }
     }, 1000); // decrement the countdown every second
 }
-
-
 // helper function -----------------------------------------------------------
 
 function shuffle() {
