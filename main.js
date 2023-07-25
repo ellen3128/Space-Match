@@ -39,15 +39,6 @@ const levelEl = document.querySelector('.level');
 
 // event listeners -----------------------------------------------------------
 
-// 1) card shuffle when webpage is loaded
-// 2) alert msg for next level when all cards have been flipped
-// 3) alert msg when turns === max. number of turns (TBD maybe 10?)
-// 3) card shuffle when user clicks 'next level' button
-
-/* TODO: 1) ignore clicks when two cards are clicked (choice1 && choice2 !== null)
-         2) if clicked, flip card to faceUp 
-         3) check match */
-
 let clickEnabled = true;
 
 cardEls.forEach((cardEl, index) => {
@@ -106,8 +97,15 @@ function shuffle() {
             // console.log(cardOptions[index]);
         }
     });
+    setTimeout(() => { // to make sure last card is rendered before alert
     isGameOver(); // Check if the game is over after rendering
+    }, 500); 
+     // Check if the game is won (i.e., all 12 cards are matched)
+     setTimeout(() => {
+     isGameWon(); 
+    }, 500);
 }
+
 
 function checkMatch() {
     // Check if both choices have been made, meaning non-null values 
@@ -137,6 +135,17 @@ function checkMatch() {
             }, 500); // code will be executed after 500 milliseconds or 0.5 second 
         }
     }
+}
+
+function isGameWon() {
+    if (matchedCards.length === 12) {
+        // Show "Game Won" alert
+        alert('You Won! Would you like to replay?');
+        // Reset the game
+        resetGame();
+        return true;
+    }
+    return false;
 }
 
 function isGameOver() {
