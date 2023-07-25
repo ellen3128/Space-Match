@@ -1,4 +1,4 @@
-console.log('checking console');
+const AUDIO = new Audio('https://assets.mixkit.co/sfx/preview/mixkit-simple-countdown-922.mp3');
 
 // constants -----------------------------------------------------------
 
@@ -18,8 +18,6 @@ const cardOptions = [
     {value: 'JR', faceUp: false, image: 'img/images/jokers/joker-red.svg'}, 
     {value: 'JR', faceUp: false, image: 'img/images/jokers/joker-red.svg'}
 ];
-
-
 
 // state variables -----------------------------------------------------------
 
@@ -74,7 +72,9 @@ function init() {
 }
 
 function startCountdown() {
-    countdown = 3; // reset the countdown
+    let countdown = 3; // reset the countdown
+    AUDIO.currentTime = 0;
+    AUDIO.play();
     countdownEl.textContent = countdown;
     timeOut = setInterval(() => {
         countdown--;
