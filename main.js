@@ -194,7 +194,7 @@ function isGameWon() {
         // Show "Game Won" alert
         alert('You Won in ' + timeTaken + ' seconds! Would you like to replay?');
         // Reset the game
-        resetGame();
+        resetGameWithoutScoreReset();
         return true;
     }
     return false;
@@ -206,25 +206,45 @@ function isGameOver() {
         let timeTaken = Math.round((gameEndTime - gameStartTime) / 1000); // time in seconds
         // Show "Game Over" alert
         alert('Game Over! You lasted ' + timeTaken + ' seconds. Would you like to replay?');
-        // Reset the game
+        // Reset the game and scores
         resetGame();
         return true;
     }
     return false;
 }
 
-function resetGame() {
-    // Reset all state variables and game-related data
+function resetGameWithoutScoreReset() {
+    // Reset all state variables and game-related data except topScores
     choice1 = null;
     choice2 = null;
     matchedCards = [];
     wrongGuessesAllowed = 10;
 
-       // Set all cards to face down (i.e., `faceUp` to `false`)
+    // Set all cards to face down (i.e., `faceUp` to `false`)
     cardOptions.forEach(card => {
         card.faceUp = false;
     });
     countdownEl.textContent = '';
+    gameStartTime = new Date();
+
+    shuffle();
+    render();
+}
+
+function resetGame() {
+    // Reset all state variables and game-related data including topScores
+    choice1 = null;
+    choice2 = null;
+    matchedCards = [];
+    wrongGuessesAllowed = 10;
+    topScores = [];
+
+    // Set all cards to face down (i.e., `faceUp` to `false`)
+    cardOptions.forEach(card => {
+        card.faceUp = false;
+    });
+    countdownEl.textContent = '';
+    gameStartTime = new Date();
 
     shuffle();
     render();
