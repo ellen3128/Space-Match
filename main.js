@@ -1,6 +1,5 @@
 const AUDIO = new Audio('https://assets.mixkit.co/sfx/preview/mixkit-simple-countdown-922.mp3');
 AUDIO.playbackRate = 1.5; // Double the playback speed
-AUDIO.play();
 
 // constants -----------------------------------------------------------
 
@@ -32,6 +31,9 @@ let winner;
 let countdown = 0;
 let timeOut;
 let clickable = true;
+let gameStartTime; 
+let topScores = []; 
+
 
 // cached element references -----------------------------------------------------------
 
@@ -40,6 +42,7 @@ const wrongGuessesAllowedEl = document.querySelector('.wrongGuessesAllowed');
 const levelEl = document.querySelector('.level');
 const countdownEl = document.querySelector('.countdown');
 const toggleModeBtn = document.getElementById('toggleMode');
+const topScoresEl = document.querySelector('.top-scores');
 
 // event listeners -----------------------------------------------------------
 
@@ -81,6 +84,7 @@ function init() {
     matchedCards = [];
     shuffle();
     render();
+    gameStartTime = new Date();
 }
 
 function startCountdown() {
@@ -135,6 +139,14 @@ function render() {
         isGameOver(); // Check if the game is over after rendering
         isGameWon(); // Check if the game is won (i.e., all 12 cards are matched)
     }, 500);
+    renderTopScores();
+}
+
+function renderTopScores() {
+    let topScoresString = topScores.map(function(score, index) {
+        return (index + 1) + ': ' + score + ' seconds';
+    }).join('<br>');
+    topScoresEl.innerHTML = topScoresString;
 }
 
 function checkMatch() {
@@ -172,8 +184,15 @@ function checkMatch() {
 
 function isGameWon() {
     if (matchedCards.length === 12) {
+        let gameEndTime = new Date();
+        let timeTaken = Math.round((gameEndTime - gameStartTime) / 1000); // time in seconds
+        topScores.push(timeTaken);
+        topScores.sort((a, b) => a - b);
+        if (topScores.length > 5) {
+            topScores.pop(); // remove the slowest time if there are more than 5 scores
+        }
         // Show "Game Won" alert
-        alert('You Won! Would you like to replay?');
+        alert('You Won in ' + timeTaken + ' seconds! Would you like to replay?');
         // Reset the game
         resetGame();
         return true;
@@ -183,8 +202,10 @@ function isGameWon() {
 
 function isGameOver() {
     if (wrongGuessesAllowed === 0) {
+        let gameEndTime = new Date();
+        let timeTaken = Math.round((gameEndTime - gameStartTime) / 1000); // time in seconds
         // Show "Game Over" alert
-        alert('Game Over! Would you like to replay?');
+        alert('Game Over! You lasted ' + timeTaken + ' seconds. Would you like to replay?');
         // Reset the game
         resetGame();
         return true;
