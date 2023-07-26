@@ -17,6 +17,10 @@ const cardOptions = [
     {value: 'JB', faceUp: false, image: 'img/images/jokers/joker-black.svg'},
     {value: 'JB', faceUp: false, image: 'img/images/jokers/joker-black.svg'},
     {value: 'JR', faceUp: false, image: 'img/images/jokers/joker-red.svg'}, 
+    {value: 'JR', faceUp: false, image: 'img/images/jokers/joker-red.svg'}, 
+    {value: 'JB', faceUp: false, image: 'img/images/jokers/joker-black.svg'},
+    {value: 'JB', faceUp: false, image: 'img/images/jokers/joker-black.svg'},
+    {value: 'JR', faceUp: false, image: 'img/images/jokers/joker-red.svg'}, 
     {value: 'JR', faceUp: false, image: 'img/images/jokers/joker-red.svg'}
 ];
 
@@ -145,7 +149,7 @@ function render() {
 function renderTopScores() {
     let topScoresString = topScores.map(function(score, index) {
         return (index + 1) + ': ' + score + ' seconds';
-    }).join('<br>');
+    }).join('<br>'); // adding line break in the list of top scores 
     topScoresEl.innerHTML = topScoresString;
 }
 
@@ -188,7 +192,7 @@ function isGameWon() {
         let timeTaken = Math.round((gameEndTime - gameStartTime) / 1000); // time in seconds
         topScores.push(timeTaken);
         topScores.sort((a, b) => a - b);
-        if (topScores.length > 5) {
+        if (topScores.length > 10) {
             topScores.pop(); // remove the slowest time if there are more than 5 scores
         }
         // Show "Game Won" alert
