@@ -5,6 +5,10 @@ body {
 
 /* light/dark mode changes */
 
+.hidden {
+    display: none;
+}
+
 #toggleMode {
     margin: 10px 0 0 10px;
     font-family: 'Bungee', cursive;
