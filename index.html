@@ -15,11 +15,13 @@
 <body>
     <div class="img-container"><img src="img/space_theme/astronaut.png"></div>
     <button id="toggleMode">Change Mode</button>
-    <main>
+<main>
     <div class="container-fluid d-flex">
+        <div class="game-area d-flex flex-column">
         <div class="game-container">
         <h1>Match Madness</h1>
         <p class="countdown">0</p>
+        </br>
         <div class="row">
             <div class="col card"><img src="img/images/backs/blue.svg"></div>
             <div class="col card"><img src="img/images/backs/blue.svg"></div>
@@ -43,12 +45,15 @@
             <h4>Turns left : <span class="wrongGuessesAllowed"></span></h4>
             <h4 class="level"> Level : 1</h4>
         </div>
+    </div>
+    </div>
+</main>
         <div class="score-container">
         <div class="top-scores"style = "color:white;"></div>    
     </div>    
     </div>    
     </div>
-    </main>
+    
 <script defer src="main.js"></script>
 </body>
 </html>

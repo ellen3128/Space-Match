@@ -20,6 +20,10 @@ body {
     color: #333 !important;
 }
 
+.light-mode .top-scores {
+    color: #333!important;
+}
+
 .light-mode .countdown {
     color: #333 !important;
 }
@@ -28,12 +32,34 @@ body {
     color: #333 !important;
 }
 
+main {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+}
+
+.score-container {
+    width: 300px;
+    height: 200px;
+    background-color: red;
+    border: 2px solid red;
+    margin-left: 76%;
+    margin-top: -30%
+}
+
 h1 {
     font-family: 'Bungee', cursive;
     font-size: 50px !important;
     text-align: center;
     padding: 70px 30px 0px 30px;
     color: white;
+}
+
+.top-scores {
+    color: white !important;
+    font-family: 'Bungee', cursive;
+    font-size: 20px !important;
+    text-align: center;
 }
 
 header {
