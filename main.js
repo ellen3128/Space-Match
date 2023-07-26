@@ -37,6 +37,7 @@ const cardEls = document.querySelectorAll('.card');
 const wrongGuessesAllowedEl = document.querySelector('.wrongGuessesAllowed');
 const levelEl = document.querySelector('.level');
 const countdownEl = document.querySelector('.countdown');
+const toggleModeBtn = document.getElementById('toggleMode');
 
 // event listeners -----------------------------------------------------------
 
@@ -62,7 +63,11 @@ cardEls.forEach((cardEl, index) => {
     });
 });
 
+// Event listener for the mode toggle button -----------------------------------------------------------
 
+toggleModeBtn.addEventListener('click', function() {
+    document.body.classList.toggle('light-mode');
+});
 
 // functions -----------------------------------------------------------
 
@@ -123,12 +128,10 @@ function render() {
             // console.log(cardOptions[index]);
         }
     });
-    setTimeout(() => { // to make sure last card is rendered before alert
-    isGameOver(); // Check if the game is over after rendering
-    }, 500); 
-     // Check if the game is won (i.e., all 12 cards are matched)
-     setTimeout(() => {
-     isGameWon(); 
+    setTimeout(() => { // to make sure last card is rendered before alert + turns 
+        wrongGuessesAllowedEl.textContent = wrongGuessesAllowed;
+        isGameOver(); // Check if the game is over after rendering
+        isGameWon(); // Check if the game is won (i.e., all 12 cards are matched)
     }, 500);
 }
 
@@ -164,7 +167,6 @@ function checkMatch() {
         }
     }
 }
-
 
 function isGameWon() {
     if (matchedCards.length === 12) {
