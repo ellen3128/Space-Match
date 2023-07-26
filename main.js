@@ -1,4 +1,6 @@
 const AUDIO = new Audio('https://assets.mixkit.co/sfx/preview/mixkit-simple-countdown-922.mp3');
+AUDIO.playbackRate = 1.5; // Double the playback speed
+AUDIO.play();
 
 // constants -----------------------------------------------------------
 
@@ -101,7 +103,7 @@ function startCountdown() {
             render();
             isGameOver();
         }
-    }, 1000); // decrement the countdown every second
+    }, 600); // decrement the countdown every second
 }
 // helper function -----------------------------------------------------------
 
