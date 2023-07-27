@@ -252,8 +252,8 @@ function startCountdown() {
 // helper function -----------------------------------------------------------
 
 function shuffle() {
-    for (let i = currentCardOptions.length - 1; i > 0; i--) {
-        const randomIndex = Math.floor(Math.random() * (i + 1));
+    for (let i = currentCardOptions.length - 1; i > 0; i--) {  // i-- to decrease the number of cards to shuffle 
+        const randomIndex = Math.floor(Math.random() * (i + 1)); // generates a random index 
         [currentCardOptions[i], currentCardOptions[randomIndex]] = [currentCardOptions[randomIndex], currentCardOptions[i]];
     }
 }
