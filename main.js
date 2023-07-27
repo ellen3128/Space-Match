@@ -5,58 +5,130 @@ AUDIO.playbackRate = 1.5; // Double the playback speed
 
 const backImage = 'img/images/backs/blue.svg';
 
-const cardOptions = [
-    {value: 'H', faceUp: false, image: 'img/images/hearts/hearts-A.svg'},
-    {value: 'H', faceUp: false, image: 'img/images/hearts/hearts-A.svg'},
-    {value: 'C', faceUp: false, image: 'img/images/clubs/clubs-A.svg'},
-    {value: 'C', faceUp: false, image: 'img/images/clubs/clubs-A.svg'},
-    {value: 'S', faceUp: false, image: 'img/images/spades/spades-A.svg'},
-    {value: 'S', faceUp: false, image: 'img/images/spades/spades-A.svg'},
-    {value: 'D', faceUp: false, image: 'img/images/diamonds/diamonds-A.svg'},
-    {value: 'D', faceUp: false, image: 'img/images/diamonds/diamonds-A.svg'}, 
-    {value: 'JB', faceUp: false, image: 'img/images/jokers/joker-black.svg'},
-    {value: 'JB', faceUp: false, image: 'img/images/jokers/joker-black.svg'},
-    {value: 'JR', faceUp: false, image: 'img/images/jokers/joker-red.svg'}, 
-    {value: 'JR', faceUp: false, image: 'img/images/jokers/joker-red.svg'}, 
-    // level 2 
-    {value: 'H', faceUp: false, image: 'img/images/hearts/hearts-A.svg', level: 2},
-    {value: 'H', faceUp: false, image: 'img/images/hearts/hearts-A.svg', level: 2},
-    {value: 'C', faceUp: false, image: 'img/images/clubs/clubs-A.svg', level: 2},
-    {value: 'C', faceUp: false, image: 'img/images/clubs/clubs-A.svg', level: 2},
-    {value: 'S', faceUp: false, image: 'img/images/spades/spades-A.svg', level: 2},
-    {value: 'S', faceUp: false, image: 'img/images/spades/spades-A.svg', level: 2},
-    {value: 'D', faceUp: false, image: 'img/images/diamonds/diamonds-A.svg', level: 2},
-    {value: 'D', faceUp: false, image: 'img/images/diamonds/diamonds-A.svg', level: 2}, 
-    {value: 'JB', faceUp: false, image: 'img/images/jokers/joker-black.svg', level: 2},
-    {value: 'JB', faceUp: false, image: 'img/images/jokers/joker-black.svg', level: 2},
-    {value: 'JR', faceUp: false, image: 'img/images/jokers/joker-red.svg', level: 2}, 
-    {value: 'JR', faceUp: false, image: 'img/images/jokers/joker-red.svg', level: 2}, 
-    {value: 'HQ', faceUp: false, image: 'img/images/hearts/hearts-Q.svg', level: 2},
-    {value: 'HQ', faceUp: false, image: 'img/images/hearts/hearts-Q.svg', level: 2},
-    {value: 'CQ', faceUp: false, image: 'img/images/clubs/clubs-Q.svg', level: 2},
-    {value: 'CQ', faceUp: false, image: 'img/images/clubs/clubs-Q.svg', level: 2},
-    // level 3
-    {value: 'H', faceUp: false, image: 'img/images/hearts/hearts-A.svg', level: 3},
-    {value: 'H', faceUp: false, image: 'img/images/hearts/hearts-A.svg', level: 3},
-    {value: 'C', faceUp: false, image: 'img/images/clubs/clubs-A.svg', level: 3},
-    {value: 'C', faceUp: false, image: 'img/images/clubs/clubs-A.svg', level: 3},
-    {value: 'S', faceUp: false, image: 'img/images/spades/spades-A.svg', level: 3},
-    {value: 'S', faceUp: false, image: 'img/images/spades/spades-A.svg', level: 3},
-    {value: 'D', faceUp: false, image: 'img/images/diamonds/diamonds-A.svg', level: 3},
-    {value: 'D', faceUp: false, image: 'img/images/diamonds/diamonds-A.svg', level: 3}, 
-    {value: 'JB', faceUp: false, image: 'img/images/jokers/joker-black.svg', level: 3},
-    {value: 'JB', faceUp: false, image: 'img/images/jokers/joker-black.svg', level: 3},
-    {value: 'JR', faceUp: false, image: 'img/images/jokers/joker-red.svg', level: 3}, 
-    {value: 'JR', faceUp: false, image: 'img/images/jokers/joker-red.svg', level: 3}, 
-    {value: 'HQ', faceUp: false, image: 'img/images/hearts/hearts-Q.svg', level: 3},
-    {value: 'HQ', faceUp: false, image: 'img/images/hearts/hearts-Q.svg', level: 3},
-    {value: 'CQ', faceUp: false, image: 'img/images/clubs/clubs-Q.svg', level: 3},
-    {value: 'CQ', faceUp: false, image: 'img/images/clubs/clubs-Q.svg', level: 3},
-    {value: 'SQ', faceUp: false, image: 'img/images/spades/spades-Q.svg', level: 3},
-    {value: 'SQ', faceUp: false, image: 'img/images/spades/spades-Q.svg', level: 3},
-    {value: 'DQ', faceUp: false, image: 'img/images/diamonds/diamonds-Q.svg', level: 3},
-    {value: 'DQ', faceUp: false, image: 'img/images/diamonds/diamonds-Q.svg', level: 3},
-];
+const cardOptions = {
+    1: [
+        // EASY
+        {value: 'H', faceUp: false, image: 'img/images/hearts/hearts-A.svg'},
+        {value: 'H', faceUp: false, image: 'img/images/hearts/hearts-A.svg'},
+        {value: 'C', faceUp: false, image: 'img/images/clubs/clubs-A.svg'},
+        {value: 'C', faceUp: false, image: 'img/images/clubs/clubs-A.svg'},
+        {value: 'S', faceUp: false, image: 'img/images/spades/spades-A.svg'},
+        {value: 'S', faceUp: false, image: 'img/images/spades/spades-A.svg'},
+        {value: 'D', faceUp: false, image: 'img/images/diamonds/diamonds-A.svg'},
+        {value: 'D', faceUp: false, image: 'img/images/diamonds/diamonds-A.svg'}, 
+        {value: 'JB', faceUp: false, image: 'img/images/jokers/joker-black.svg'},
+        {value: 'JB', faceUp: false, image: 'img/images/jokers/joker-black.svg'},
+        {value: 'JR', faceUp: false, image: 'img/images/jokers/joker-red.svg'}, 
+        {value: 'JR', faceUp: false, image: 'img/images/jokers/joker-red.svg'}, 
+    ],
+    2: [
+        // // EASY
+        {value: 'H', faceUp: false, image: 'img/images/hearts/hearts-A.svg'},
+        {value: 'H', faceUp: false, image: 'img/images/hearts/hearts-A.svg'},
+        {value: 'C', faceUp: false, image: 'img/images/clubs/clubs-A.svg'},
+        {value: 'C', faceUp: false, image: 'img/images/clubs/clubs-A.svg'},
+        {value: 'S', faceUp: false, image: 'img/images/spades/spades-A.svg'},
+        {value: 'S', faceUp: false, image: 'img/images/spades/spades-A.svg'},
+        {value: 'D', faceUp: false, image: 'img/images/diamonds/diamonds-A.svg'},
+        {value: 'D', faceUp: false, image: 'img/images/diamonds/diamonds-A.svg'}, 
+        {value: 'JB', faceUp: false, image: 'img/images/jokers/joker-black.svg'},
+        {value: 'JB', faceUp: false, image: 'img/images/jokers/joker-black.svg'},
+        {value: 'JR', faceUp: false, image: 'img/images/jokers/joker-red.svg'}, 
+        {value: 'JR', faceUp: false, image: 'img/images/jokers/joker-red.svg'}, 
+        // NORMAL
+        {value: 'H', faceUp: false, image: 'img/images/hearts/hearts-A.svg'},
+        {value: 'H', faceUp: false, image: 'img/images/hearts/hearts-A.svg'},
+        {value: 'C', faceUp: false, image: 'img/images/clubs/clubs-A.svg'},
+        {value: 'C', faceUp: false, image: 'img/images/clubs/clubs-A.svg'},
+        {value: 'S', faceUp: false, image: 'img/images/spades/spades-A.svg'},
+        {value: 'S', faceUp: false, image: 'img/images/spades/spades-A.svg'},
+        {value: 'D', faceUp: false, image: 'img/images/diamonds/diamonds-A.svg'},
+        {value: 'D', faceUp: false, image: 'img/images/diamonds/diamonds-A.svg'}, 
+        {value: 'JB', faceUp: false, image: 'img/images/jokers/joker-black.svg'},
+        {value: 'JB', faceUp: false, image: 'img/images/jokers/joker-black.svg'},
+        {value: 'JR', faceUp: false, image: 'img/images/jokers/joker-red.svg'}, 
+        {value: 'JR', faceUp: false, image: 'img/images/jokers/joker-red.svg'}, 
+        //
+        {value: 'HH', faceUp: false, image: 'img/images/hearts/hearts-A.svg'},
+        {value: 'HH', faceUp: false, image: 'img/images/hearts/hearts-A.svg'},
+        {value: 'CC', faceUp: false, image: 'img/images/clubs/clubs-A.svg'},
+        {value: 'CC', faceUp: false, image: 'img/images/clubs/clubs-A.svg'},
+        {value: 'SS', faceUp: false, image: 'img/images/spades/spades-A.svg'},
+        {value: 'SS', faceUp: false, image: 'img/images/spades/spades-A.svg'},
+        {value: 'DD', faceUp: false, image: 'img/images/diamonds/diamonds-A.svg'},
+        {value: 'DD', faceUp: false, image: 'img/images/diamonds/diamonds-A.svg'}, 
+    ],
+    3: [
+        // EASY
+        {value: 'H', faceUp: false, image: 'img/images/hearts/hearts-A.svg'},
+        {value: 'H', faceUp: false, image: 'img/images/hearts/hearts-A.svg'},
+        {value: 'C', faceUp: false, image: 'img/images/clubs/clubs-A.svg'},
+        {value: 'C', faceUp: false, image: 'img/images/clubs/clubs-A.svg'},
+        {value: 'S', faceUp: false, image: 'img/images/spades/spades-A.svg'},
+        {value: 'S', faceUp: false, image: 'img/images/spades/spades-A.svg'},
+        {value: 'D', faceUp: false, image: 'img/images/diamonds/diamonds-A.svg'},
+        {value: 'D', faceUp: false, image: 'img/images/diamonds/diamonds-A.svg'}, 
+        {value: 'JB', faceUp: false, image: 'img/images/jokers/joker-black.svg'},
+        {value: 'JB', faceUp: false, image: 'img/images/jokers/joker-black.svg'},
+        {value: 'JR', faceUp: false, image: 'img/images/jokers/joker-red.svg'}, 
+        {value: 'JR', faceUp: false, image: 'img/images/jokers/joker-red.svg'}, 
+        // NORMAL
+        {value: 'H', faceUp: false, image: 'img/images/hearts/hearts-A.svg'},
+        {value: 'H', faceUp: false, image: 'img/images/hearts/hearts-A.svg'},
+        {value: 'C', faceUp: false, image: 'img/images/clubs/clubs-A.svg'},
+        {value: 'C', faceUp: false, image: 'img/images/clubs/clubs-A.svg'},
+        {value: 'S', faceUp: false, image: 'img/images/spades/spades-A.svg'},
+        {value: 'S', faceUp: false, image: 'img/images/spades/spades-A.svg'},
+        {value: 'D', faceUp: false, image: 'img/images/diamonds/diamonds-A.svg'},
+        {value: 'D', faceUp: false, image: 'img/images/diamonds/diamonds-A.svg'}, 
+        {value: 'JB', faceUp: false, image: 'img/images/jokers/joker-black.svg'},
+        {value: 'JB', faceUp: false, image: 'img/images/jokers/joker-black.svg'},
+        {value: 'JR', faceUp: false, image: 'img/images/jokers/joker-red.svg'}, 
+        {value: 'JR', faceUp: false, image: 'img/images/jokers/joker-red.svg'}, 
+        //
+        {value: 'HH', faceUp: false, image: 'img/images/hearts/hearts-A.svg'},
+        {value: 'HH', faceUp: false, image: 'img/images/hearts/hearts-A.svg'},
+        {value: 'CC', faceUp: false, image: 'img/images/clubs/clubs-A.svg'},
+        {value: 'CC', faceUp: false, image: 'img/images/clubs/clubs-A.svg'},
+        {value: 'SS', faceUp: false, image: 'img/images/spades/spades-A.svg'},
+        {value: 'SS', faceUp: false, image: 'img/images/spades/spades-A.svg'},
+        {value: 'DD', faceUp: false, image: 'img/images/diamonds/diamonds-A.svg'},
+        {value: 'DD', faceUp: false, image: 'img/images/diamonds/diamonds-A.svg'}, 
+        // HARD
+        {value: 'H', faceUp: false, image: 'img/images/hearts/hearts-A.svg'},
+        {value: 'H', faceUp: false, image: 'img/images/hearts/hearts-A.svg'},
+        {value: 'C', faceUp: false, image: 'img/images/clubs/clubs-A.svg'},
+        {value: 'C', faceUp: false, image: 'img/images/clubs/clubs-A.svg'},
+        {value: 'S', faceUp: false, image: 'img/images/spades/spades-A.svg'},
+        {value: 'S', faceUp: false, image: 'img/images/spades/spades-A.svg'},
+        {value: 'D', faceUp: false, image: 'img/images/diamonds/diamonds-A.svg'},
+        {value: 'D', faceUp: false, image: 'img/images/diamonds/diamonds-A.svg'}, 
+        {value: 'JB', faceUp: false, image: 'img/images/jokers/joker-black.svg'},
+        {value: 'JB', faceUp: false, image: 'img/images/jokers/joker-black.svg'},
+        {value: 'JR', faceUp: false, image: 'img/images/jokers/joker-red.svg'}, 
+        {value: 'JR', faceUp: false, image: 'img/images/jokers/joker-red.svg'}, 
+        //
+        {value: 'H', faceUp: false, image: 'img/images/hearts/hearts-A.svg'},
+        {value: 'H', faceUp: false, image: 'img/images/hearts/hearts-A.svg'},
+        {value: 'C', faceUp: false, image: 'img/images/clubs/clubs-A.svg'},
+        {value: 'C', faceUp: false, image: 'img/images/clubs/clubs-A.svg'},
+        {value: 'S', faceUp: false, image: 'img/images/spades/spades-A.svg'},
+        {value: 'S', faceUp: false, image: 'img/images/spades/spades-A.svg'},
+        {value: 'D', faceUp: false, image: 'img/images/diamonds/diamonds-A.svg'},
+        {value: 'D', faceUp: false, image: 'img/images/diamonds/diamonds-A.svg'}, 
+        //
+        {value: 'JB', faceUp: false, image: 'img/images/jokers/joker-black.svg'},
+        {value: 'JB', faceUp: false, image: 'img/images/jokers/joker-black.svg'},
+        {value: 'JR', faceUp: false, image: 'img/images/jokers/joker-red.svg'}, 
+        {value: 'JR', faceUp: false, image: 'img/images/jokers/joker-red.svg'}, 
+        {value: 'HQ', faceUp: false, image: 'img/images/hearts/hearts-Q.svg'},
+        {value: 'HQ', faceUp: false, image: 'img/images/hearts/hearts-Q.svg'},
+        {value: 'CQ', faceUp: false, image: 'img/images/clubs/clubs-Q.svg'},
+        {value: 'CQ', faceUp: false, image: 'img/images/clubs/clubs-Q.svg'},
+        {value: 'H', faceUp: false, image: 'img/images/hearts/hearts-A.svg'},
+        {value: 'H', faceUp: false, image: 'img/images/hearts/hearts-A.svg'},
+    ]
+}
 
 // state variables -----------------------------------------------------------
 
@@ -70,7 +142,8 @@ let countdown = 0;
 let timeOut;
 let clickable = true;
 let gameStartTime; 
-let topScores = []; 
+let topScores = [];
+let currentLevel = 1; 
 
 
 // cached element references -----------------------------------------------------------
@@ -82,12 +155,41 @@ const countdownEl = document.querySelector('.countdown');
 const toggleModeBtn = document.getElementById('toggleMode');
 const topScoresEl = document.querySelector('.top-scores');
 
+// Store buttons references
+const levelButtons = {
+  1: document.querySelector('#level-1-button'),
+  2: document.querySelector('#level-2-button'),
+  3: document.querySelector('#level-3-button'),
+};
+
+ // Start at Level 1
+let currentCardOptions = cardOptions[currentLevel]; // Start with Level 1 cards
+
+function changeLevel(level) {
+  // Hide the previous level
+  document.querySelector('.level-' + currentLevel).classList.add('hidden');
+  // Remove 'active' class from previous level button
+  levelButtons[currentLevel].classList.remove('active');
+
+  // Update the current level and card options
+  currentLevel = level;
+  currentCardOptions = cardOptions[currentLevel];
+
+  // Show the new level
+  document.querySelector('.level-' + currentLevel).classList.remove('hidden');
+  // Add 'active' class to new level button
+  levelButtons[currentLevel].classList.add('active');
+
+  resetGame();
+}
+
+
 // event listeners -----------------------------------------------------------
 
 cardEls.forEach((cardEl, index) => {
     cardEl.addEventListener('click', function() {
         if (!clickable) return; // Prevent function from proceeding if clickable is false
-        const card = cardOptions[index];
+        const card = currentCardOptions[index];
         // Flip the card face-up
         if (card.faceUp === false) {
             card.faceUp = true;
@@ -115,7 +217,7 @@ toggleModeBtn.addEventListener('click', function() {
 // functions -----------------------------------------------------------
 
 function init() {
-    console.log('game start');
+    // console.log('game start');
     // initialize state
     wrongGuessesAllowed = 10;
     level = 1;
@@ -145,37 +247,41 @@ function startCountdown() {
             render();
             isGameOver();
         }
-    }, 600); // decrement the countdown every second
+    }, 600); //0.6 seconds
 }
 // helper function -----------------------------------------------------------
 
 function shuffle() {
-    for (let i = cardOptions.length - 1; i > 0; i--) {
+    for (let i = currentCardOptions.length - 1; i > 0; i--) {
         const randomIndex = Math.floor(Math.random() * (i + 1));
-        [cardOptions[i], cardOptions[randomIndex]] = [cardOptions[randomIndex], cardOptions[i]];
+        [currentCardOptions[i], currentCardOptions[randomIndex]] = [currentCardOptions[randomIndex], currentCardOptions[i]];
     }
 }
 
 function render() {
     wrongGuessesAllowedEl.textContent = wrongGuessesAllowed;
     cardEls.forEach((cardEl, index) => { 
-        const card = cardOptions[index];
-        if (card.faceUp === true || matchedCards.includes(card)) { // if card is face-up or within the matched cards array, render the image of the card 
+        const card = currentCardOptions[index];
+
+        if (!card) {
+            // console.log(`No card found for index: ${index}`);
+            return; // continue to next iteration as no card found for this index
+        }
+
+        if (card.faceUp === true || matchedCards.includes(card)) { 
             cardEl.classList.add('flipped');
-            cardEl.querySelector('img').src = cardOptions[index].image;
-            // console.log(index+1, 'flipped-first', cardEl.classList);
-            // console.log(cardOptions[index]);
+            cardEl.querySelector('img').src = currentCardOptions[index].image;
         } else {
-            cardEl.classList.remove('flipped'); // if not, render the back image of the card 
+            cardEl.classList.remove('flipped');
             cardEl.querySelector('img').src = backImage;
-            // console.log(index+1, 'flipped-back', cardEl.classList);
-            // console.log(cardOptions[index]);
         }
     });
-    setTimeout(() => { // to make sure last card is rendered before alert + turns 
+
+    setTimeout(() => { 
         wrongGuessesAllowedEl.textContent = wrongGuessesAllowed;
-        isGameOver(); // Check if the game is over after rendering
-        isGameWon(); // Check if the game is won (i.e., all 12 cards are matched)
+        // console.log('gameover');
+        isGameOver(); 
+        isGameWon();
     }, 500);
     renderTopScores();
 }
@@ -220,23 +326,40 @@ function checkMatch() {
     }
 }
 
+
 function isGameWon() {
-    if (matchedCards.length === 12) {
+    const cardsToWin = {
+        1: 12, // Level EASY requires 12 cards to win
+        2: 20, // Level NORMAL requires 20 cards to win
+        3: 30, // Level HARD requires 30 cards to win
+    };
+    const totalMatchesForLevel = cardsToWin[currentLevel];
+    if (matchedCards.length === totalMatchesForLevel) {
         let gameEndTime = new Date();
         let timeTaken = Math.round((gameEndTime - gameStartTime) / 1000); // time in seconds
         topScores.push(timeTaken);
         topScores.sort((a, b) => a - b);
-        if (topScores.length > 10) {
+        if (topScores.length > 5) {
             topScores.pop(); // remove the slowest time if there are more than 5 scores
         }
         // Show "Game Won" alert
         alert('You Won in ' + timeTaken + ' seconds! Would you like to replay?');
-        // Reset the game
-        resetGameWithoutScoreReset();
+        
+        // Update scores
+        renderTopScores();
+
+        // Check if the player wants to replay the game
+        const replay = confirm('Would you like to replay?');
+        if (replay) {
+            // Reset the game if the player wants to replay
+            resetGameWithoutScoreReset();
+        }
+
         return true;
     }
     return false;
 }
+
 
 function isGameOver() {
     if (wrongGuessesAllowed === 0) {
@@ -252,33 +375,48 @@ function isGameOver() {
 }
 
 function resetGameWithoutScoreReset() {
-    // Reset all state variables and game-related data except topScores
+    // reset game variables
     choice1 = null;
     choice2 = null;
     matchedCards = [];
     wrongGuessesAllowed = 10;
-
-    // Set all cards to face down (i.e., `faceUp` to `false`)
-    cardOptions.forEach(card => {
+    level = 1;
+    clickable = true;
+    gameStartTime = new Date();
+    
+    // reset card faceUp state
+    currentCardOptions.forEach(card => {
         card.faceUp = false;
     });
-    countdownEl.textContent = '';
-    gameStartTime = new Date();
 
+    // shuffle the cards
     shuffle();
+    
+    // render the game
     render();
 }
+
 
 function resetGame() {
     // Reset all state variables and game-related data including topScores
     choice1 = null;
     choice2 = null;
     matchedCards = [];
-    wrongGuessesAllowed = 10;
+    
+    if (currentLevel === 1) {
+        wrongGuessesAllowed = 10;
+    } else if (currentLevel === 2) {
+        wrongGuessesAllowed = 13;
+    } else if (currentLevel === 3) {
+        wrongGuessesAllowed = 15;
+    } else {
+        wrongGuessesAllowed = 10;
+    }
+    
     topScores = [];
 
     // Set all cards to face down (i.e., `faceUp` to `false`)
-    cardOptions.forEach(card => {
+    currentCardOptions.forEach(card => {
         card.faceUp = false;
     });
     countdownEl.textContent = '';
@@ -287,5 +425,6 @@ function resetGame() {
     shuffle();
     render();
 }
+
 
 init();
