@@ -343,7 +343,7 @@ function isGameWon() {
             topScores.pop(); // remove the slowest time if there are more than 5 scores
         }
         // Show "Game Won" alert
-        alert('You Won in ' + timeTaken + ' seconds! Would you like to replay?');
+        alert('You Won in ' + timeTaken + ' seconds!');
         
         // Update scores
         renderTopScores();
