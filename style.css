@@ -5,6 +5,19 @@ body {
 
 /* light/dark mode changes */
 
+.img-container img {
+    -webkit-animation: mover 2s infinite  alternate;
+    animation: mover 2s infinite  alternate;
+}
+@-webkit-keyframes mover {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-20px); }
+}
+@keyframes mover {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-20px); }
+}
+
 .hidden {
     display: none;
 }
@@ -44,8 +57,8 @@ main {
 .score-container {
     width: 570px;
     height: 300px;
-    background-color: red;
-    border: 2px solid red;
+    background-color: rgb(25, 28, 111);
+    border: 15px solid rgb(132, 132, 132);
     margin: 0 auto 0 auto;
 }
 
@@ -59,6 +72,7 @@ h1 {
 
 .top-scores {
     color: white !important;
+    background-color: black;
     font-family: 'Bungee', cursive;
     font-size: 25px !important;
     text-align: center;
@@ -70,7 +84,7 @@ header {
 
 main { 
     height: 50vh;
-    width: 6vw;
+    width: 100vw;
     max-width: 700px;
     margin: 0 auto 0 auto;
 }
@@ -92,11 +106,11 @@ main {
 }
 
 .flipped {
-    transform: rotateY(180deg);
+    transform: rotateX(180deg);
 }
 
 .countdown {
-    font-size: 30px;
+    font-size: 50px;
     font-family: 'Bungee', cursive;
     text-align: center;
     color: white;
