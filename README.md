@@ -10,30 +10,29 @@
 
 
 ## II. Technologies used 
-<!-- List of the technologies used, e.g., JavaScript, HTML, CSS... -->
 
-- HTML, CSS and javascript
-- CSS grid and flex box
-- CSS animation
+- HTML, CSS, Javascript, Bootstrap
 
 ## III. Key resources 
-<!-- resouce links -->
 
 1. [License](./LICENSE.md)
 2. [W3docs](https://www.w3docs.com/snippets/javascript/how-to-randomize-shuffle-a-javascript-array.html)
+3. [MDN web docs](https://www.developer.mozilla.org)  
+4. [Stack overflow](https://www.stackoverflow.com) 
+5. [PNGEgg](https://www.pngegg.com/en/png-bcgqn) 
 
-## IV. Getting started
+## IV. How to play!
 
 - [Play](https://ellen3128.github.io/Space-Match/) Space Match! 
-1. Match cards in three different levels
-2. Each wrong guesses will count against the turns left
-3. Make sure the cards are chosen in 3 seconds 
+1. Match cards in three different levels 
+2. Each wrong guesses will count against the turns left on the bottom
+3. Make sure each pair of cards are chosen in 3 seconds 
 4. Check scoreboard for the track records! 
 
 ## V. Future features
-<!-- Planned future enhancements (icebox items) -->
+
 - More diversified categories of card images to choose from
-- Further development of icebox features
+- Further development of icebox features (more levels and complexity)
 
 
 
