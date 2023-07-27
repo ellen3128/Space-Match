@@ -132,8 +132,8 @@ const cardOptions = {
 
 // state variables -----------------------------------------------------------
 
-let choice1 = null; // currently holds no value
-let choice2 = null; // currently holds no value
+let choice1 = null; 
+let choice2 = null; 
 let matchedCards = []; 
 let wrongGuessesAllowed;
 let level;
@@ -162,22 +162,16 @@ const levelButtons = {
   3: document.querySelector('#level-3-button'),
 };
 
- // Start at Level 1
-let currentCardOptions = cardOptions[currentLevel]; // Start with Level 1 cards
+let currentCardOptions = cardOptions[currentLevel]; 
 
 function changeLevel(level) {
-  // Hide the previous level
   document.querySelector('.level-' + currentLevel).classList.add('hidden');
-  // Remove 'active' class from previous level button
   levelButtons[currentLevel].classList.remove('active');
-
-  // Update the current level and card options
+  
   currentLevel = level;
   currentCardOptions = cardOptions[currentLevel];
 
-  // Show the new level
   document.querySelector('.level-' + currentLevel).classList.remove('hidden');
-  // Add 'active' class to new level button
   levelButtons[currentLevel].classList.add('active');
 
   resetGame();

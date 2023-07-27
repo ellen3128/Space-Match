@@ -3,7 +3,6 @@ body {
     background-image: url('img/space_theme/stars2.gif');
 }
 
-/* light/dark mode changes */
 
 .img-container img {
     -webkit-animation: mover 2s infinite  alternate;
@@ -27,7 +26,7 @@ body {
     justify-content: center;
   }
   
-  #level-selector button {
+#level-selector button {
     margin: 10px;
     padding: 10px;
     border: none;
@@ -113,7 +112,7 @@ header {
 
 main { 
     height: 50vh;
-    width: 100vw;
+    width: 90vw;
     max-width: 700px;
     margin: 0 auto 0 auto;
 }
