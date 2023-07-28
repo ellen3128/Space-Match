@@ -14,14 +14,16 @@
 
 ## II. Game screenshots 
 
-![Starting Page](assets/1.png)
+![Level1](assets/1.png)
 
-![Level 1](assets/2.png)
+![Level2](assets/2.png)
 
 
-![Starting Page](assets/3.png)
+![Level3](assets/3.png)
 
-![Starting Page](assets/4.png)
+![Scoreboard](assets/4.png)
+
+![Mode change](assets/5.png)
 
 ## III. Technologies used
 
