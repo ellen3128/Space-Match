@@ -155,7 +155,7 @@ const countdownEl = document.querySelector('.countdown');
 const toggleModeBtn = document.getElementById('toggleMode');
 const topScoresEl = document.querySelector('.top-scores');
 
-// Store buttons references
+// cached level buttons references
 const levelButtons = {
   1: document.querySelector('#level-1-button'),
   2: document.querySelector('#level-2-button'),
@@ -182,27 +182,25 @@ function changeLevel(level) {
 
 cardEls.forEach((cardEl, index) => {
     cardEl.addEventListener('click', function() {
-        if (!clickable) return; // Prevent function from proceeding if clickable is false
+        if (!clickable) return; 
         const card = currentCardOptions[index];
-        // Flip the card face-up
         if (card.faceUp === false) {
             card.faceUp = true;
         }
-        // Set the first or second card choice
         if (choice1 === null) {
-            choice1 = card; // First card choice
-            startCountdown(); // start the countdown
+            choice1 = card; 
+            startCountdown(); 
             render();
         } else if (choice1 !== null && choice2 === null) {
-            choice2 = card; // Second card choice
-            clickable = false; // Disable clicking after second card choice
-            checkMatch(); // Check if the two choices match
+            choice2 = card; 
+            clickable = false; 
+            checkMatch(); 
             render();
         }
     });
 });
 
-// Event listener for the mode toggle button -----------------------------------------------------------
+// toggle mode button -----------------------------------------------------------
 
 toggleModeBtn.addEventListener('click', function() {
     document.body.classList.toggle('light-mode');
@@ -211,8 +209,6 @@ toggleModeBtn.addEventListener('click', function() {
 // functions -----------------------------------------------------------
 
 function init() {
-    // console.log('game start');
-    // initialize state
     wrongGuessesAllowed = 10;
     level = 1;
     matchedCards = [];
@@ -222,7 +218,7 @@ function init() {
 }
 
 function startCountdown() {
-    countdown = 3; // reset the countdown
+    countdown = 3; 
     AUDIO.currentTime = 0;
     AUDIO.play();
     countdownEl.textContent = countdown;
@@ -230,10 +226,10 @@ function startCountdown() {
         countdown--;
         countdownEl.textContent = countdown;
         if (countdown <= 0 || choice2 !== null) {
-            countdown = 0; // fixes timer from going into negative values
-            clearInterval(timeOut); // stop the countdown when it reaches 0 or when the second card is clicked
-            clickable = true; // Enable clicking after countdown finishes
-            if(choice1 !== null && choice2 === null) { // if only one card has been chosen
+            countdown = 0; 
+            clearInterval(timeOut); 
+            clickable = true; 
+            if(choice1 !== null && choice2 === null) { 
                 choice1.faceUp = false;
                 choice1 = null;
                 wrongGuessesAllowed--;
@@ -241,13 +237,13 @@ function startCountdown() {
             render();
             isGameOver();
         }
-    }, 600); //0.6 seconds
+    }, 600);
 }
 // helper function -----------------------------------------------------------
 
 function shuffle() {
-    for (let i = currentCardOptions.length - 1; i > 0; i--) {  // i-- to decrease the number of cards to shuffle 
-        const randomIndex = Math.floor(Math.random() * (i + 1)); // generates a random index 
+    for (let i = currentCardOptions.length - 1; i > 0; i--) {   
+        const randomIndex = Math.floor(Math.random() * (i + 1)); 
         [currentCardOptions[i], currentCardOptions[randomIndex]] = [currentCardOptions[randomIndex], currentCardOptions[i]];
     }
 }
@@ -258,8 +254,7 @@ function render() {
         const card = currentCardOptions[index];
 
         if (!card) {
-            // console.log(`No card found for index: ${index}`);
-            return; // continue to next iteration as no card found for this index
+            return; 
         }
 
         if (card.faceUp === true || matchedCards.includes(card)) { 
@@ -273,7 +268,6 @@ function render() {
 
     setTimeout(() => { 
         wrongGuessesAllowedEl.textContent = wrongGuessesAllowed;
-        // console.log('gameover');
         isGameOver(); 
         isGameWon();
     }, 500);
@@ -283,30 +277,22 @@ function render() {
 function renderTopScores() {
     let topScoresString = topScores.map(function(score, index) {
         return (index + 1) + ': ' + score + ' seconds';
-    }).join('<br>'); // adding line break in the list of top scores 
+    }).join('<br>'); 
     topScoresEl.innerHTML = topScoresString;
 }
 
 function checkMatch() {
-    // Check if both choices have been made, meaning non-null values 
     if (choice1 !== null && choice2 !== null) {
-        // Check if the two choices match
         if (choice1.value === choice2.value) {
-            // Match found
             matchedCards.push(choice1);
             matchedCards.push(choice2);
-            // Reset choices after confirming match
             choice1 = null;
             choice2 = null;
         } else {
-            // No match
-            // Store the choices before resetting to null
             const prevChoice1 = choice1;
             const prevChoice2 = choice2;
-            // Reset choices after checking match
             choice1 = null;
             choice2 = null;
-            // Flip the cards back to faceDown state after a short delay
             setTimeout(() => {
                 prevChoice1.faceUp = false;
                 prevChoice2.faceUp = false;
@@ -314,8 +300,8 @@ function checkMatch() {
                     wrongGuessesAllowed--;
                 }
                 render();
-                isGameOver();// Check if the game is over after updating the wrongGuessesAllowed count
-            }, 500); // code will be executed after 500 milliseconds or 0.5 second 
+                isGameOver();
+            }, 500); 
         }
     }
 }
@@ -330,25 +316,20 @@ function isGameWon() {
     const totalMatchesForLevel = cardsToWin[currentLevel];
     if (matchedCards.length === totalMatchesForLevel) {
         let gameEndTime = new Date();
-        let timeTaken = Math.round((gameEndTime - gameStartTime) / 1000); // time in seconds
+        let timeTaken = Math.round((gameEndTime - gameStartTime) / 1000); 
         topScores.push(timeTaken);
         topScores.sort((a, b) => a - b);
         if (topScores.length > 5) {
-            topScores.pop(); // remove the slowest time if there are more than 5 scores
+            topScores.pop(); 
         }
-        // Show "Game Won" alert
         alert('You Won in ' + timeTaken + ' seconds!');
         
-        // Update scores
         renderTopScores();
 
-        // Check if the player wants to replay the game
         const replay = confirm('Would you like to replay?');
         if (replay) {
-            // Reset the game if the player wants to replay
             resetGameWithoutScoreReset();
         }
-
         return true;
     }
     return false;
@@ -358,10 +339,8 @@ function isGameWon() {
 function isGameOver() {
     if (wrongGuessesAllowed === 0) {
         let gameEndTime = new Date();
-        let timeTaken = Math.round((gameEndTime - gameStartTime) / 1000); // time in seconds
-        // Show "Game Over" alert
+        let timeTaken = Math.round((gameEndTime - gameStartTime) / 1000);
         alert('Game Over! You lasted ' + timeTaken + ' seconds. Would you like to replay?');
-        // Reset the game and scores
         resetGame();
         return true;
     }
@@ -369,7 +348,6 @@ function isGameOver() {
 }
 
 function resetGameWithoutScoreReset() {
-    // reset game variables
     choice1 = null;
     choice2 = null;
     matchedCards = [];
@@ -378,21 +356,15 @@ function resetGameWithoutScoreReset() {
     clickable = true;
     gameStartTime = new Date();
     
-    // reset card faceUp state
     currentCardOptions.forEach(card => {
         card.faceUp = false;
     });
-
-    // shuffle the cards
     shuffle();
-    
-    // render the game
     render();
 }
 
 
 function resetGame() {
-    // Reset all state variables and game-related data including topScores
     choice1 = null;
     choice2 = null;
     matchedCards = [];
@@ -409,7 +381,6 @@ function resetGame() {
     
     topScores = [];
 
-    // Set all cards to face down (i.e., `faceUp` to `false`)
     currentCardOptions.forEach(card => {
         card.faceUp = false;
     });
