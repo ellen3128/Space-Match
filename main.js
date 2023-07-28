@@ -155,6 +155,12 @@ const countdownEl = document.querySelector('.countdown');
 const toggleModeBtn = document.getElementById('toggleMode');
 const topScoresEl = document.querySelector('.top-scores');
 
+// toggle mode button -----------------------------------------------------------
+
+toggleModeBtn.addEventListener('click', function() {
+    document.body.classList.toggle('light-mode');
+});
+
 // cached level buttons references
 const levelButtons = {
   1: document.querySelector('#level-1-button'),
@@ -165,12 +171,13 @@ const levelButtons = {
 let currentCardOptions = cardOptions[currentLevel]; 
 
 function changeLevel(level) {
+  // current level hidden
   document.querySelector('.level-' + currentLevel).classList.add('hidden');
   levelButtons[currentLevel].classList.remove('active');
-  
+  // next level declared
   currentLevel = level;
   currentCardOptions = cardOptions[currentLevel];
-
+  // remove hidden for the new level 
   document.querySelector('.level-' + currentLevel).classList.remove('hidden');
   levelButtons[currentLevel].classList.add('active');
 
@@ -200,11 +207,7 @@ cardEls.forEach((cardEl, index) => {
     });
 });
 
-// toggle mode button -----------------------------------------------------------
 
-toggleModeBtn.addEventListener('click', function() {
-    document.body.classList.toggle('light-mode');
-});
 
 // functions -----------------------------------------------------------
 

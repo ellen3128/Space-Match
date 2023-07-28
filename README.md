@@ -1,5 +1,5 @@
 # "Space Match" 
-- The "Spce Match" is a card matching game that tests player's memory and concentration skills as the player flips over cards to find matching pairs. The challenge lies in remembering the positions of the hidden cards and making strategic moves to uncover them before times runs out. Matched pairs will clear from the board, and as player progresses to higher levels, the difficulty increases. 
+- The "Spce Match" is a card matching game that tests player's memory and concentration skills as the player flips over cards to find matching pairs. The challenge lies in remembering the positions of the hidden cards and making strategic moves to uncover them before times runs out. As player progresses to higher levels, the difficulty increases. 
 
 - FUN FACT : "Concentration" or "Memory" game is considered one of the earliest computer games, and its creation is credited to William Higinbotham, an American physicist and pioneer in the field of computer graphics. Higinbotham developed the memory game in 1958, making it one of the earliest examples of interactive entertainment on a computer!
 
